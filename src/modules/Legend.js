@@ -394,7 +394,8 @@ class Legend {
     const hoverOverLegend =
       e.target.classList.contains('apexcharts-legend-text') ||
       e.target.classList.contains('apexcharts-legend-marker')
-
+    
+    let seriesCnt = parseInt(e.target.getAttribute('rel')) - 1
     var legendHover = this.w.config.chart.events.legendHover;
     if (typeof legendHover === 'function') {
       legendHover(this.ctx, seriesCnt, e)
