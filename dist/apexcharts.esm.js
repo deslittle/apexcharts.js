@@ -15103,7 +15103,7 @@ function () {
       var hoverOverLegend = e.target.classList.contains('apexcharts-legend-text') || e.target.classList.contains('apexcharts-legend-marker');
       var legendHover = this.w.config.chart.events.legendHover;
 
-      if (typeof legendClick === 'function') {
+      if (typeof legendHover === 'function') {
         legendHover(this.ctx, seriesCnt, e);
       }
 
@@ -15132,10 +15132,10 @@ function () {
         var _seriesCnt2 = parseInt(e.target.getAttribute('rel')) - 1;
 
         var isHidden = e.target.getAttribute('data:collapsed') === 'true';
-        var _legendClick = this.w.config.chart.events.legendClick;
+        var legendClick = this.w.config.chart.events.legendClick;
 
-        if (typeof _legendClick === 'function') {
-          _legendClick(this.ctx, _seriesCnt2, this.w);
+        if (typeof legendClick === 'function') {
+          legendClick(this.ctx, _seriesCnt2, this.w);
         }
 
         this.ctx.fireEvent('legendClick', [this.ctx, _seriesCnt2, this.w]);

@@ -396,7 +396,7 @@ class Legend {
       e.target.classList.contains('apexcharts-legend-marker')
 
     var legendHover = this.w.config.chart.events.legendHover;
-    if (typeof legendClick === 'function') {
+    if (typeof legendHover === 'function') {
       legendHover(this.ctx, seriesCnt, e)
     }
 
