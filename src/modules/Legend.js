@@ -395,6 +395,11 @@ class Legend {
       e.target.classList.contains('apexcharts-legend-text') ||
       e.target.classList.contains('apexcharts-legend-marker')
 
+    var legendHover = this.w.config.chart.events.legendHover;
+    if (typeof legendClick === 'function') {
+      legendHover(this.ctx, seriesCnt, e)
+    }
+
     if (w.config.chart.type !== 'heatmap') {
       if (!e.target.classList.contains('inactive-legend') && hoverOverLegend) {
         let series = new Series(this.ctx)
