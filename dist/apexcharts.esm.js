@@ -15101,6 +15101,7 @@ function () {
     value: function onLegendHovered(e) {
       var w = this.w;
       var hoverOverLegend = e.target.classList.contains('apexcharts-legend-text') || e.target.classList.contains('apexcharts-legend-marker');
+      var seriesCnt = parseInt(e.target.getAttribute('rel')) - 1;
       var legendHover = this.w.config.chart.events.legendHover;
 
       if (typeof legendHover === 'function') {
@@ -15129,24 +15130,23 @@ function () {
     key: "onLegendClick",
     value: function onLegendClick(e) {
       if (e.target.classList.contains('apexcharts-legend-text') || e.target.classList.contains('apexcharts-legend-marker')) {
-        var _seriesCnt2 = parseInt(e.target.getAttribute('rel')) - 1;
-
+        var seriesCnt = parseInt(e.target.getAttribute('rel')) - 1;
         var isHidden = e.target.getAttribute('data:collapsed') === 'true';
         var legendClick = this.w.config.chart.events.legendClick;
 
         if (typeof legendClick === 'function') {
-          legendClick(this.ctx, _seriesCnt2, this.w);
+          legendClick(this.ctx, seriesCnt, this.w);
         }
 
-        this.ctx.fireEvent('legendClick', [this.ctx, _seriesCnt2, this.w]);
+        this.ctx.fireEvent('legendClick', [this.ctx, seriesCnt, this.w]);
         var markerClick = this.w.config.legend.markers.onClick;
 
         if (typeof markerClick === 'function' && e.target.classList.contains('apexcharts-legend-marker')) {
-          markerClick(this.ctx, _seriesCnt2, this.w);
-          this.ctx.fireEvent('legendMarkerClick', [this.ctx, _seriesCnt2, this.w]);
+          markerClick(this.ctx, seriesCnt, this.w);
+          this.ctx.fireEvent('legendMarkerClick', [this.ctx, seriesCnt, this.w]);
         }
 
-        this.toggleDataSeries(_seriesCnt2, isHidden);
+        this.toggleDataSeries(seriesCnt, isHidden);
       }
     }
   }, {
